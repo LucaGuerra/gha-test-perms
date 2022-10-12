@@ -1,0 +1,26 @@
+name: Push Image
+on: 
+  workflow_dispatch
+
+jobs:
+  push_things:
+    env:
+      REGISTRY: ghcr.io
+      IMAGE: ghcr.io/LucaGuerra/test-image
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login to Github Packages
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and push the thing
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          tags: ${{ env.IMAGE }}
+          push: true
