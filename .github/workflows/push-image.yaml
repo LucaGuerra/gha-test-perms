@@ -6,7 +6,7 @@ jobs:
   push_things:
     env:
       REGISTRY: ghcr.io
-      IMAGE: ghcr.io/LucaGuerra/test-image
+      IMAGE: ghcr.io/lucaguerra/test-image
 
     runs-on: ubuntu-latest
 
